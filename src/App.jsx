@@ -1,15 +1,17 @@
 import Footer from "./components/Footer";
+import Header from "./components/Header";
 import Hero from "./components/Hero";
-import Navbar from "./components/Navbar"
+import TaskBoard from "./components/task/TaskBoard";
 
 function App() {
   return (
-    <div className="bg-[#191D26] font-[Inter] text-white">
-      <Navbar />
+    <div>
+      <Header />
       <Hero />
-      <Footer/>
+      <TaskBoard/>
+      <Footer />
     </div>
   );
 }
 
-export default App
+export default App;
