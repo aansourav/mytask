@@ -1,7 +1,7 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
 
-const TaskList = ({ tasks, onEdit, handleDelete, emptyTaskList }) => {
+const TaskList = ({ tasks, onEdit, handleDelete, emptyTaskList, onFavourite }) => {
   return (
     <div className="overflow-auto">
       <table className="table-fixed overflow-auto xl:w-full">
@@ -25,7 +25,12 @@ const TaskList = ({ tasks, onEdit, handleDelete, emptyTaskList }) => {
               key={task.id}
               className="border-b border-[#2E3443] [&>td]:align-baseline [&>td]:px-4 [&>td]:py-2"
             >
-              <td>{task.isFavourite ? <FaStar color="yellow" /> : <FaStar color="gray" />}</td>
+              <td>
+                <button onClick={() => onFavourite(task.id)}>
+                  {task.isFavourite ? <FaStar color="yellow" /> : <FaStar color="gray" />}
+                </button>
+              </td>
+
               <td>{task.title}</td>
               <td>
                 <div>{task.description}</div>

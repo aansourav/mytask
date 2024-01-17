@@ -60,6 +60,18 @@ const TaskBoard = () => {
     setEmptyTaskList(true);
   };
 
+  const handleFavourite = (taskId) => {
+    const favouriteTaskIndex = tasks.findIndex((task) => task.id === taskId);
+    const newTasks = [...tasks];
+    newTasks[favouriteTaskIndex].isFavourite = !newTasks[favouriteTaskIndex].isFavourite;
+    setTasks(newTasks);
+  };
+
+  const handleSearch = (searchText) => {
+    const searchedTask = tasks.filter((task) => task.title.toLowerCase().includes(searchText.toLowerCase()));
+    setTasks([...searchedTask]);
+  };
+
   return (
     <section className="mb-20" id="tasks">
       {showAddModal && (
@@ -67,7 +79,7 @@ const TaskBoard = () => {
       )}
       <div className="container">
         <div className="p-2 flex justify-end">
-          <SearchTask />
+          <SearchTask handleSearch={handleSearch} />
         </div>
 
         <div
@@ -81,6 +93,7 @@ const TaskBoard = () => {
             onEdit={handleEditTask}
             handleDelete={handleDelete}
             emptyTaskList={emptyTaskList}
+            onFavourite={handleFavourite}
           />
         </div>
       </div>
